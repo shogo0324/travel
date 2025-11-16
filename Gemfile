@@ -59,7 +59,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-gem 'carrierwave' , '~> 1.3' ,  '>= 1.3.1'
+gem 'carrierwave'
 gem 'dotenv-rails'
 gem 'cloudinary', '<2.0.0'
 gem 'devise'
