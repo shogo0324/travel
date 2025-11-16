@@ -2,7 +2,9 @@
   <ul>
     <% @blogs.each do |blog| %>
       <li>
-        <%= link_to blog.title, blog_path(blog) %> （<%= blog.start_time.strftime("%H:%M") %>）
+        <%= link_to blog_path(blog) do %>
+          <%= blog.title %>【<%= blog.start_time.strftime("%H:%M") %>】
+        <% end %>
       </li>
       <%= blog.user.name %>
       <p>画像</p>
