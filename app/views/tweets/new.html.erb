@@ -1,0 +1,19 @@
+<h1>Geektravel</h1>
+<h3>新規tweet</h3>
+
+<%= form_for @tweet, html: { multipart: true } do |f| %>
+
+  <div class="field">
+    <%= f.label :visit_date, "旅行日" %>
+    <%= f.date_field :visit_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image, "画像" %>
+    <%= f.file_field :image %>
+  </div>
+
+  <%= f.submit "投稿する" %>
+<% end %>
+
+<%= link_to "一覧に戻る", tweets_path %>

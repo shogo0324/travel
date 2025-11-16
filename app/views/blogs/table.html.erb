@@ -1,0 +1,31 @@
+<% if @blogs.present? %>
+  <ul>
+    <% @blogs.each do |blog| %>
+      <li>
+        <%= link_to blog.title, blog_path(blog) %> （<%= blog.start_time.strftime("%H:%M") %>）
+      </li>
+      <%= blog.user.name %>
+      <p>画像</p>
+      <% if blog.image.present? %>
+        <%= image_tag blog.image.url, size: "250x200" %>
+      <% end %>
+      <p>場所</p>
+      <%= blog.title %>
+      <p>内容</p>
+      <%= blog.content %>
+        <% if user_signed_in? %>
+     <% if current_user.already_liked?(blog) %>
+        <%= link_to blog_like_path(id: blog.id, blog_id: blog.id), data: { turbo_method: :delete } do %>
+            <p>いいねを取り消す</p><%= blog.likes.count %>
+        <% end %>
+     <% else %>
+        <%= link_to blog_likes_path(id: blog.id, blog_id: blog.id), data: { turbo_method: :post }  do %>
+            <p>いいね</p><%= blog.likes.count %>
+        <% end %>
+     <% end %>
+    <% else %>
+      <p>いいねの数 = </p><%= blog.likes.count %>
+    <% end %>
+    <% end %>
+  </ul>
+    <% end %>

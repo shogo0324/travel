@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>場所</strong>
+  <%= @blog.title %>
+</p>
+
+<p>
+  <strong>画像</strong>
+  <%= image_tag @blog.image.url, size: "400x300" if @blog.image.present? %>
+</p>
+
+<p>
+  <strong>行った日時</strong>
+  <%= @blog.start_time.strftime("%Y-%m-%d %H:%M") %>
+</p>
+
+<p>
+  <strong>内容</strong>
+  <%= @blog.content %>
+</p>
+
+    <%= @blog.user.name %> 
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<%= link_to 'Back', blogs_path %>
+
+<% if user_signed_in? %>
+     <% if current_user.already_liked?(@blog) %>
+        <%= link_to blog_like_path(id: @blog.id, blog_id: @blog.id), data: { turbo_method: :delete } do %>
+            <p>いいねを取り消す</p><%= @blog.likes.count %>
+        <% end %>
+     <% else %>
+        <%= link_to blog_likes_path(id: @blog.id, blog_id: @blog.id), data: { turbo_method: :post }  do %>
+            <p>いいね</p><%= @blog.likes.count %>
+        <% end %>
+     <% end %>
+<% else %>
+    <p>いいねの数 = </p><%= @blog.likes.count %>
+<% end %>

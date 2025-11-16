@@ -1,0 +1,40 @@
+<p>名前 : <%= @user.name %></p>
+<p>メールアドレス : <%= @user.email %></p>
+
+<% if current_user.id == @user.id %>
+  <%= link_to "編集する", edit_user_registration_path %>
+<% end %>
+
+<h2>ユーザーの投稿一覧</h2>
+<% @user.blogs.each do |t| %>
+  <%= t.user.name %>
+  <p>画像</p>
+  <% if t.image.present? %>
+    <%= image_tag t.image.url, size: "250x200" %>
+  <% end %>
+  <p>場所</p>
+  <%= t.title %>
+  <p>行った日時</p>
+  <%= t.start_time %>
+  <p>内容</p>
+  <%= t.content %>
+  
+<% end %>
+<!-- 以下はいいね機能を実装している場合-->
+<h2>ユーザーがいいねした投稿一覧</h2>
+<% @user.liked_blogs.each do |t| %>
+  <%= t.user.name %>
+  <p>画像</p>
+  <% if t.image.present? %>
+    <%= image_tag t.image.url, size: "250x200" %>
+  <% end %>
+  <p>場所</p>
+  <%= t.title %>
+  <p>行った日時</p>
+  <%= t.start_time %>
+  <p>内容</p>
+  <%= t.content %>
+<% end %>
+<!-- ここまで-->
+
+<%= link_to "Blog一覧に戻る", blogs_path %>
