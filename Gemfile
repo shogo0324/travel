@@ -60,7 +60,7 @@ group :test do
   gem "selenium-webdriver"
 end
 gem 'activestorage-cloudinary-service'
-gem 'cloudinary', '<2.0.0'
+gem 'cloudinary', '<3.0.0'
 gem 'devise'
 group :production do
   gem 'pg'
