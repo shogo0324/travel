@@ -59,8 +59,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-gem 'carrierwave'
-gem 'dotenv-rails'
+gem 'activestorage-cloudinary-service'
 gem 'cloudinary', '<2.0.0'
 gem 'devise'
 group :production do
